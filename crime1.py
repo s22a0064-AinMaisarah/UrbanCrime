@@ -16,10 +16,7 @@ st.set_page_config(
 # --- HEADER ---
 st.title("🚨 Urban Crime Analytics Dashboard")
 st.markdown("""
-The objective of using K-Means clustering is to group cities into three distinct clusters 
-based on their crime profiles including violent, property, white-collar, and social crimes, 
-so that cities with similar crime patterns are categorized together. 
-This allows for clear comparison between areas with different crime characteristics and supports targeted crime-prevention strategies.
+"Using machine learning (K-Means & PCA) to uncover crime behavior patterns in cities.
 """)
 st.markdown("---")
 
@@ -45,9 +42,10 @@ if not df.empty:
     # === INTRO SECTION ===
     st.subheader("🎯 Objective")
     st.write("""
-    The goal of this analysis is to **cluster cities** into distinct groups based on their crime statistics — 
-    including **violent**, **property**, **white-collar**, and **social** crimes — 
-    to help policymakers identify patterns and prioritize targeted prevention strategies.
+    The objective of using K-Means clustering is to group cities into three distinct clusters 
+    based on their crime profiles including violent, property, white-collar, and social crimes, 
+    so that cities with similar crime patterns are categorized together. 
+    This allows for clear comparison between areas with different crime characteristics and supports targeted crime-prevention strategies.
     """)
 
     st.markdown("---")
