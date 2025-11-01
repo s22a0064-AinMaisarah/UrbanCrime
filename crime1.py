@@ -16,7 +16,7 @@ st.set_page_config(
 # --- HEADER ---
 st.title("🚨 Urban Crime Analytics Dashboard")
 st.markdown("""
-"Using machine learning (K-Means & PCA) to uncover crime behavior patterns in cities.
+Using machine learning (K-Means & PCA) to uncover crime behavior patterns in cities.
 """)
 st.markdown("---")
 
