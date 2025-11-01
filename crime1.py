@@ -39,27 +39,58 @@ if not df.empty:
 
 
     
-    # --- SUMMARY METRICS BOX ---
-    st.subheader("📊 Crime Dataset Overview")
+   # --- SUMMARY METRICS BOX ---
+st.subheader("📊 Crime Dataset Overview")
 
-    col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4 = st.columns(4)
 
-    num_cities = df['city_cat'].nunique() if 'city_cat' in df.columns else len(df)
-    avg_violent = df['violent_crime'].mean().round(2)
-    avg_property = df['property_crime'].mean().round(2)
-    avg_whitecollar = df['whitecollar_crime'].mean().round(2)
-    avg_social = df['social_crime'].mean().round(2)
+num_cities = df['city_cat'].nunique() if 'city_cat' in df.columns else len(df)
+avg_violent = df['violent_crime'].mean().round(2)
+avg_property = df['property_crime'].mean().round(2)
+avg_whitecollar = df['whitecollar_crime'].mean().round(2)
+avg_social = df['social_crime'].mean().round(2)
 
-    col1.metric("🏙️ Cities Analyzed", value=num_cities)
-    col2.metric("⚠️ Avg Violent Crime", value=avg_violent)
-    col3.metric("🏚️ Avg Property Crime", value=avg_property)
-    col4.metric("💼 Avg White-Collar Crime", value=avg_whitecollar)
+col1.metric(
+    label="🏙️ Cities Analyzed", 
+    value=num_cities, 
+    help="Total number of unique cities analyzed in this dataset.",
+    border=True
+)
+col2.metric(
+    label="⚠️ Avg Violent Crime", 
+    value=avg_violent, 
+    help="Average number of violent crime incidents per city.", 
+    border=True
+)
+col3.metric(
+    label="🏚️ Avg Property Crime", 
+    value=avg_property, 
+    help="Average number of property crime incidents per city.", 
+    border=True
+)
+col4.metric(
+    label="💼 Avg White-Collar Crime", 
+    value=avg_whitecollar, 
+    help="Average number of white-collar (fraud, embezzlement, etc.) crimes per city.", 
+    border=True
+)
 
-    col5, col6 = st.columns(2)
-    col5.metric("👥 Avg Social Crime", value=avg_social)
-    col6.metric("📂 Clusters Formed", value="3 (K-Means)")
+col5, col6 = st.columns(2)
+col5.metric(
+    label="👥 Avg Social Crime", 
+    value=avg_social, 
+    help="Average rate of social-related crimes (e.g., gambling, drug offenses).", 
+    border=True
+)
+col6.metric(
+    label="📂 Clusters Formed", 
+    value="3 (K-Means)", 
+    help="Number of clusters formed using the K-Means algorithm.", 
+    border=True
+)
 
-    st.markdown("---")
+st.markdown("---")
+
     
     # --- SELECT FEATURES ---
     features = ['violent_crime', 'property_crime', 'whitecollar_crime', 'social_crime']
