@@ -16,8 +16,10 @@ st.set_page_config(
 # --- HEADER ---
 st.title("🚨 Urban Crime Analytics Dashboard")
 st.markdown("""
-This interactive dashboard applies **Machine Learning (K-Means & PCA)** to uncover 
-patterns in urban crime data and group cities based on similar crime behaviors.
+The objective of using K-Means clustering is to group cities into three distinct clusters 
+based on their crime profiles including violent, property, white-collar, and social crimes, 
+so that cities with similar crime patterns are categorized together. 
+This allows for clear comparison between areas with different crime characteristics and supports targeted crime-prevention strategies.
 """)
 st.markdown("---")
 
