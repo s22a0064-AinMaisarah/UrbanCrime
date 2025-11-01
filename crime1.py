@@ -9,12 +9,12 @@ from sklearn.decomposition import PCA
 # --- PAGE CONFIG ---
 st.set_page_config(
     page_title="Urban Crime Analytics Dashboard",
-    page_icon="🚨",
+    page_icon="📊",
     layout="wide",
 )
 
 # --- HEADER ---
-st.title("🚨 Urban Crime Analytics Dashboard")
+st.title("Urban Crime Analytics Dashboard")
 st.markdown("""
 Using machine learning (K-Means & PCA) to uncover crime behavior patterns in cities.
 """)
@@ -40,7 +40,7 @@ df = load_data(CSV_URL, ENCODING_TYPE)
 if not df.empty:
 
     # === INTRO SECTION ===
-    st.subheader("🎯 Objective")
+    st.subheader("Objective")
     st.write("""
     The objective of using K-Means clustering is to group cities into three distinct clusters 
     based on their crime profiles including violent, property, white-collar, and social crimes, 
@@ -51,7 +51,7 @@ if not df.empty:
     st.markdown("---")
 
     # === SUMMARY STATISTICS ===
-    st.subheader("📊 Crime Dataset Overview")
+    st.subheader("Crime Dataset Overview")
 
     col1, col2, col3, col4 = st.columns(4)
 
@@ -62,25 +62,25 @@ if not df.empty:
     avg_social = df['social_crime'].mean().round(2)
 
     col1.metric(
-        label="🏙️ Cities Analyzed",
+        label="Cities Analyzed",
         value=num_cities,
         help="Total number of unique cities analyzed in the dataset.",
         border=True,
     )
     col2.metric(
-        label="⚠️ Avg Violent Crime",
+        label="Avg Violent Crime",
         value=avg_violent,
         help="Average number of violent crime incidents per city.",
         border=True,
     )
     col3.metric(
-        label="🏚️ Avg Property Crime",
+        label="Avg Property Crime",
         value=avg_property,
         help="Average number of property crime incidents per city.",
         border=True,
     )
     col4.metric(
-        label="💼 Avg White-Collar Crime",
+        label="Avg White-Collar Crime",
         value=avg_whitecollar,
         help="Average number of white-collar crimes such as fraud and embezzlement per city.",
         border=True,
@@ -88,13 +88,13 @@ if not df.empty:
 
     col5, col6 = st.columns(2)
     col5.metric(
-        label="👥 Avg Social Crime",
+        label="Avg Social Crime",
         value=avg_social,
         help="Average rate of social-related crimes (e.g., gambling, drug offenses).",
         border=True,
     )
     col6.metric(
-        label="📂 Clusters Formed",
+        label="Clusters Formed",
         value="3 (K-Means)",
         help="Number of city clusters identified using K-Means.",
         border=True,
@@ -103,7 +103,7 @@ if not df.empty:
     st.markdown("---")
 
     # === MACHINE LEARNING PIPELINE ===
-    st.subheader("🧮 Machine Learning Workflow")
+    st.subheader("Machine Learning Workflow")
 
     st.info("""
     The data was standardized using **StandardScaler**, clustered with **K-Means (k=3)**, 
@@ -117,7 +117,7 @@ if not df.empty:
     X_scaled = scaler.fit_transform(X)
 
     # --- Elbow Method ---
-    st.subheader("📈 Elbow Method – Optimal Number of Clusters")
+    st.subheader("Elbow Method – Optimal Number of Clusters")
     wcss = []
     for k in range(2, 10):
         kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
@@ -136,7 +136,7 @@ if not df.empty:
     df['crime_cluster'] = kmeans.fit_predict(X_scaled)
 
     # --- PCA Visualization ---
-    st.subheader("🧩 PCA Visualization – Crime Pattern Clusters")
+    st.subheader("PCA Visualization – Crime Pattern Clusters")
     pca = PCA(n_components=2)
     pca_data = pca.fit_transform(X_scaled)
     df['PC1'], df['PC2'] = pca_data[:, 0], pca_data[:, 1]
@@ -151,7 +151,7 @@ if not df.empty:
     st.pyplot(fig2)
 
     # --- Cluster Profile ---
-    st.subheader("🏙️ Cluster Profile – Average Crime Rates per Cluster")
+    st.subheader("Cluster Profile – Average Crime Rates per Cluster")
     cluster_profile = df.groupby('crime_cluster')[features].mean().T
 
     fig3, ax3 = plt.subplots(figsize=(7, 4))
@@ -163,7 +163,7 @@ if not df.empty:
 
     # === INTERPRETATION ===
     st.markdown("---")
-    st.subheader("🧠 Interpretation & Insights")
+    st.subheader("Interpretation & Insights")
     st.success("""
     - The **Elbow Method** validates that **k=3** clusters provide the optimal segmentation.  
     - The **PCA plot** clearly shows three distinct clusters, reflecting strong separation in crime behavior.  
@@ -177,4 +177,4 @@ if not df.empty:
     """)
 
 else:
-    st.error("❌ Failed to load dataset. Please check the data source.")
+    st.error("Failed to load dataset. Please check the data source.")
